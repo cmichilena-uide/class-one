@@ -80,7 +80,7 @@ def obtener_estudiante(id: int):
         return estudiante
 
 
-@app.delete("/estudiantes/{id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/estudiantes/{id}")
 def eliminar_estudiante(id: int):
     with Session(engine) as session:
         estudiante = session.get(Estudiante, id)
@@ -90,3 +90,4 @@ def eliminar_estudiante(id: int):
             )
         session.delete(estudiante)
         session.commit()
+        return {"message": "Estudiante eliminado"}
